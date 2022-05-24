@@ -22,7 +22,7 @@ Follow your OS rules to set an envirment variable (example of a set variable her
 
 Edit config file (example below)  
 each line is a new `group`  
-each on each line a new `log` is seperated by a colon `:`
+on each line a new `log` is seperated by a colon `:`
 <img src="img/config.png">
 
 TODO:  
