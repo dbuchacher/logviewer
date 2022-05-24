@@ -2,16 +2,8 @@ use log::*;
 
 fn main() -> Result<(), Box<dyn Error>> {
 
-    // enviroment variable from the operationg system
-    let env_var = std::env::var("L0GVIEW").unwrap_or_else(|err| {
-        eprintln!("\nError: {}\nSet `L0GVIEW` envvironment variable\n", err);
-        std::process::exit(1);
-    });
-    
-    // variables
-    let paths = log_paths(&env_var);
-    let names = log_names(&env_var);
-    let mut app = App::new(paths, names);
+    let mut app = App::new();
+    // let mut app = App::new(env_var);
     let mut last_tick = Instant::now();
     let tick_rate = Duration::from_millis(666);
     
@@ -32,8 +24,10 @@ fn main() -> Result<(), Box<dyn Error>> {
             if let Event::Key(key) = event::read()? {
                 match key.code {
                     KeyCode::Char('q') => break,
-                    KeyCode::Right => app.next(),
-                    KeyCode::Left => app.previous(),
+                    KeyCode::Right => app.next_log(),
+                    KeyCode::Left => app.previous_log(),
+                    KeyCode::Up => app.next_group(),
+                    KeyCode::Down => app.previous_group(),
                     _ => {}
                 }
             }

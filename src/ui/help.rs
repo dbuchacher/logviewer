@@ -15,9 +15,15 @@ pub fn help_bar<B: Backend>(f: &mut Frame<B>, chunks: Vec<Rect>) {
 
     // text
     let text = Spans::from(vec![
-        Span::styled("  ", dark), Span::styled(" Q ", light), Span::styled(" Quit  ",    dark), Span::raw("    "),
-        Span::styled("  ", dark), Span::styled(" ← ", light), Span::styled(" Prev  ",    dark), Span::raw("    "),
-        Span::styled("  ", dark), Span::styled(" → ", light), Span::styled(" Next  ",    dark),
+        Span::styled("  ", dark), Span::styled(" Q ",       light), Span::styled(" Quit  ",               dark), Span::raw("  "),
+        Span::styled("  ", dark), Span::styled(" F ",       light), Span::styled(" Find  ",               dark), Span::raw("  "),
+        Span::styled("  ", dark), Span::styled(" ↑ ↓ ← → ", light), Span::styled(" Switch Group/Log  ", dark), Span::raw("  "),
+        Span::styled("  ", dark), Span::styled(" ^D ",      light), Span::styled(" Clear Log ",           dark),
+    ]);
+    let clear = Spans::from(vec![
+        Span::styled("  ", dark), Span::styled(" Confirm Delete? ", dark),
+        Span::styled("Y", light), Span::styled("es  ",  dark),
+        Span::styled("N", light), Span::styled("o  ",   dark), Span::raw("  ")
     ]);
 
     // bar background
